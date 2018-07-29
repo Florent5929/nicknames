@@ -8,6 +8,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.craftbukkit.v1_12_R1.command.CraftRemoteConsoleCommandSender;
 import org.bukkit.entity.Player;
 import net.md_5.bungee.api.ChatColor;
 
@@ -16,14 +18,12 @@ public class NickCommandExecutor implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
-		if(!(sender instanceof Player)){
-			sender.sendMessage(ChatColor.RED + "Commande joueur uniquement !");
-		} else if (args.length != 3){
+		if (args.length != 3){
 			sender.sendMessage("Usage : /nick <PseudoMC> <Couleur> <PseudoRP>");
 		} else if (!Plugin.colors.containsKey(args[1].toUpperCase())){
 			sender.sendMessage(ChatColor.RED + "La couleur " + args[1] + " est inconnue."
 					+ "\nLes couleurs disponibles sont les suivantes : " + Plugin.colorsString);
-		} else if (!hasColorPermission((Player)sender, args[1].toLowerCase())){
+		} else if (!hasColorPermission(sender, args[1].toLowerCase())){
 			sender.sendMessage(ChatColor.RED + "Vous n'avez pas la permission de donner la couleur " + args[1] + ".");
 		} else if(getPlayerCase(args[0]) == 3){
 			sender.sendMessage(ChatColor.RED + "Le joueur " + args[0] + " n'a pas été trouvé.");
@@ -115,12 +115,22 @@ public class NickCommandExecutor implements CommandExecutor {
 	 * @return boolean
 	 */
 	
-	public boolean hasColorPermission(Player player, String color){
-		if(player.isOp() || player.hasPermission("nicknames.manage." + color.toLowerCase())){
+	public boolean hasColorPermission(CommandSender sender, String color){
+		
+		if((sender instanceof ConsoleCommandSender) || (sender instanceof CraftRemoteConsoleCommandSender)){
 			return true;
+		} else if (sender instanceof Player){
+			Player player = (Player) sender;
+			
+			if(player.isOp() || player.hasPermission("nicknames.manage." + color.toLowerCase())){
+			return true;
+			} else {
+			return false;
+			}		
+			
 		} else {
 			return false;
-		}
+		}	
 	}
 	
 	/**
