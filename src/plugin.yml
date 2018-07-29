@@ -1,0 +1,59 @@
+name: fr_florent_nicknames
+main: fr.florent.nicknames.Plugin
+version: 1.0.0
+description: Pour utiliser des surnoms en couleur.
+author: Florent
+commands:
+ nick:
+  description: Permet de renommer un joueur avec couleur.
+  aliases:
+  - nickname
+permissions:
+ nicknames.manage.noir:
+  description: Permet de donner la couleur noire.
+  default: op
+ nicknames.manage.bleusombre:
+  description: Permet de donner la couleur bleu sombre.
+  default: op
+ nicknames.manage.vertsombre:
+  description: Permet de donner la couleur vert sombre.
+  default: op
+ nicknames.manage.aquasombre:
+  description: Permet de donner la couleur aqua sombre.
+  default: op
+ nicknames.manage.rougesombre:
+  description: Permet de donner la couleur rouge sombre.
+  default: op
+ nicknames.manage.violetsombre:
+  description: Permet de donner la couleur violetSombre.
+  default: op
+ nicknames.manage.or:
+  description: Permet de donner la couleur or.
+  default: op
+ nicknames.manage.gris:
+  description: Permet de donner la couleur grise.
+  default: op
+ nicknames.manage.grissombre:
+  description: Permet de donner la couleur gris sombre.
+  default: op
+ nicknames.manage.bleu:
+  description: Permet de donner la couleur bleue.
+  default: op
+ nicknames.manage.vert:
+  description: Permet de donner la couleur verte.
+  default: op
+ nicknames.manage.aqua:
+  description: Permet de donner la couleur aqua.
+  default: op
+ nicknames.manage.rouge:
+  description: Permet de donner la couleur rouge.
+  default: op
+ nicknames.manage.violet:
+  description: Permet de donner la couleur violette.
+  default: op
+ nicknames.manage.jaune:
+  description: Permet de donner la couleur jaune.
+  default: op
+ nicknames.manage.blanc:
+  description: Permet de donner la couleur blanche.
+  default: op
